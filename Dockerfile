@@ -31,19 +31,19 @@ RUN LIBS="libociei.so libons.so libnnz12.so libclntshcore.so.12.1 libclntsh.so.1
     # rm ${CLIENT_FILENAME}
 
 # get node app from git repo
-RUN git clone https://github.com/cloudsolutionhubs/ATPDocker.git
-RUN mkdir wallet_NODEAPPDB2
-COPY ./wallet_NODEAPPDB2 ./wallet_NODEAPPDB2
-COPY ./aone ./ATPDocker/aone
+#RUN git clone https://github.com/cloudsolutionhubs/ATPDocker.git
+RUN mkdir db_wallet
+COPY ./db_wallet ./db_wallet
+COPY ./aone ./aone
 
 #set env variables
 ENV ORACLE_BASE /opt/oracle/lib/instantclient_12_1
 ENV LD_LIBRARY_PATH /opt/oracle/lib/instantclient_12_1
-ENV TNS_ADMIN /opt/oracle/lib/wallet_NODEAPPDB2
+ENV TNS_ADMIN /opt/oracle/lib/db_wallet
 ENV ORACLE_HOME /opt/oracle/lib/instantclient_12_1
-ENV PATH /opt/oracle/lib/instantclient_12_1:/opt/oracle/lib/wallet_NODEAPPDB2:/opt/oracle/lib/ATPDocker/aone:/opt/oracle/lib/ATPDocker/aone/node_modules:$PATH
+ENV PATH /opt/oracle/lib/instantclient_12_1:/opt/oracle/lib/db_wallet:/opt/oracle/lib/aone:/opt/oracle/lib/aone/node_modules:$PATH
 
-RUN cd /opt/oracle/lib/ATPDocker/aone && \
+RUN cd /opt/oracle/lib/aone && \
 	npm install oracledb
 EXPOSE 3050
-CMD [ "node", "/opt/oracle/lib/ATPDocker/aone/server.js" ]
+CMD [ "node", "/opt/oracle/lib/aone/server.js" ]
