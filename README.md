@@ -1,1 +1,1 @@
-DevOp with ATP CLE
+DevOp with ATP CLE Workshop
