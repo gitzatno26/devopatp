@@ -1,5 +1,5 @@
 module.exports= {
-user:"admin",
-password:"AAbbcc##112233",
-connectString :"ATPJava_high"
+user:"dbuser",
+password:"dbuser_password",
+connectString :"db_connect_name"
 }
